@@ -10,7 +10,7 @@ on:
 jobs:
         build:
                 runs-on: ubuntu-18.04
-                name: Build Neutrino switcher
+                name: Build Specter Desktop
                 steps:
                         - name: Setup Environment
                           run: echo ::set-env name=TAG::${GITHUB_REF/refs\/tags\//}
