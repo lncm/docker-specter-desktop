@@ -30,5 +30,8 @@ docker run --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoi
 
 # Run in docker detached mode (so we can see the logs)
 docker run -d=true --name=specter-desktop --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.6.1 --host your.ip.address
+
+# with flask env file in root (Replace --help with other stuff
+docker run --name=specter-desktop --network=host --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin -v $HOME/.flaskenv:/.flaskenv lncm/specter-desktop:v0.6.1 --help
 ```
 
