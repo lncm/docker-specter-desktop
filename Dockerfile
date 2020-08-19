@@ -55,7 +55,8 @@ RUN mkdir -p "$DIR/.specter/"
 COPY --from=builder /usr/local/lib/python3.8 /usr/local/lib/python3.8
 COPY --from=builder /usr/local/bin /usr/local/bin
 
+
 # Expose ports
 EXPOSE 25441 25442 25443 
 
-ENTRYPOINT ["/usr/bin/python3", "-m", "cryptoadvance.specter", "server"]
+ENTRYPOINT ["/usr/local/bin/python3", "-m", "cryptoadvance.specter", "server"]
