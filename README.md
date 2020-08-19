@@ -20,10 +20,10 @@ docker build -t nolim1t/specter-desktop:v0.6.1 .
 
 ```bash
 # in HWI bridge mode
-docker run --rm -v $HOME:/.specter:/data/.specter lncm/specter-desktop:v0.6.1 --hwibridge
+docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.6.1 --hwibridge
 
 # Get the Help to see options
-docker run --rm -v $HOME:/.specter:/data/.specter lncm/specter-desktop:v0.6.1 --help
+docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.6.1 --help
 
 ```
 
