@@ -29,6 +29,6 @@ docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.6.1 --h
 docker run --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.6.1 --host your.ip.address --daemon
 
 # Run in docker detached mode (so we can see the logs)
-docker run -d=true --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.6.1 --host your.ip.address
+docker run -d=true --name=specter-desktop --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.6.1 --host your.ip.address
 ```
 
