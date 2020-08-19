@@ -16,6 +16,16 @@ So we can simplify things and make things easier (also try to build cross platfo
 docker build -t nolim1t/specter-desktop:v0.6.1 . 
 ```
 
+## Maintainer release notes
+
+The github action takes in the current tag from  [upstream](https://github.com/cryptoadvance/specter-desktop/tags)  but you will need to do a
+
+```
+git tag -s vtag.version
+```
+
+and then push the tag. Use of -s meaning the tag should be signed.
+
 ## Running
 
 ```bash
