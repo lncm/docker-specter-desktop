@@ -54,7 +54,7 @@ jobs:
                                   --tag ${{ secrets.DOCKER_HUB_USER }}/specter-desktop:$TAG \
                                   --output "type=registry" .
 
-                        - name: build neutrino-switcher against latest (specter-desktop)
+                        - name: build against latest (specter-desktop)
                           run: |
                                   docker buildx build \
                                   --cache-from "type=local,src=/tmp/.buildx-cache" \
