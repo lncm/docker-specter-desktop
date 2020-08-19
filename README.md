@@ -8,9 +8,11 @@
 
 ## Why?
 
-So we can simplify things and make things easier (also try to build cross platform)
+So we can simplify things and make things easier also ease of running through connected devices (raspberry PIs) as this runs cross platform
 
 ## Building
+
+To build yourself you can run
 
 ```
 docker build -t nolim1t/specter-desktop:v0.6.1 . 
@@ -24,14 +26,17 @@ The github action takes in the current tag from  [upstream](https://github.com/c
 git tag -s vtag.version
 ```
 
-and then push the tag. Use of -s meaning the tag should be signed.
+and then push the tag. Use of -s meaning the tag should be signed which is highly recommended that you do.
 
 ## Running
+
+There are two ways you can run this
 
 ### From docker command
 
 ```bash
-# in HWI bridge mode
+# in HWI bridge mode (meaning you would like to run a bridge to HWI)
+# Also ensure that your username is permissioned for accessing the USB device. (group=plugdev) or use the --privileged switch
 docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.6.1 --hwibridge
 
 # Get the Help to see options
@@ -51,7 +56,7 @@ docker run --name=specter-desktop --network=host --rm -v $HOME/.specter:/data/.s
 
 This is a bit complex but the idea is to make sure there is a bitcoind installation. Note that the IP needs to be specified (this is as per design by the specter project). However we probably can hack in an entrypoint to improve the flow of things going forward. 
 
-I also used host networking for ease of use.
+I also used host networking for ease of use, and also added ```privileged``` for  further ease of use in case your user can't access the usb socket if you would like to run as a bridge to HWI or use the ```--hwibridge``` flag
 
 ```yaml
 version: '3.8'
@@ -72,6 +77,7 @@ services:
         specter:
                 image: lncm/specter-desktop:v0.6.1
                 container_name: specter-desktop
+                privileged: true
                 command: /usr/local/bin/python3 -m cryptoadvance.specter server --host ip.addr
                 restart: on-failure
                 ports:
