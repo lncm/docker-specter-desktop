@@ -49,7 +49,9 @@ docker run --name=specter-desktop --network=host --rm -v $HOME/.specter:/data/.s
 
 ### Docker compose
 
-This is a bit complex but the idea is to make sure there is a bitcoind installation. Note that the IP needs to be specified (this is as per design by the specter project). However we probably can hack in an entrypoint to improve the flow of things.
+This is a bit complex but the idea is to make sure there is a bitcoind installation. Note that the IP needs to be specified (this is as per design by the specter project). However we probably can hack in an entrypoint to improve the flow of things. 
+
+I also used host networking for ease of use.
 
 ```yaml
 version: '3.8'
