@@ -1,6 +1,6 @@
 # Specter Desktop in a docker container
 
-![Build on deploy](https://github.com/lncm/docker-specter-desktop/workflows/Docker%20build%20on%20tag/badge.svg)
+[![Build on deploy](https://github.com/lncm/docker-specter-desktop/workflows/Docker%20build%20on%20tag/badge.svg)](https://github.com/lncm/docker-specter-desktop/actions?query=workflow%3A%22Docker+build+on+tag%22)
 ![Version](https://img.shields.io/github/v/release/lncm/docker-specter-desktop?sort=semver) 
 [![Docker Pulls Count](https://img.shields.io/docker/pulls/lncm/specter-desktop.svg?style=flat)](https://hub.docker.com/r/lncm/specter-desktop)
 
