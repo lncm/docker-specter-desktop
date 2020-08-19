@@ -18,6 +18,12 @@ To build yourself you can run
 docker build -t nolim1t/specter-desktop:v0.6.1 . 
 ```
 
+## Tags
+
+> **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/specter-desktop/tags
+
+* `latest` `v0.6.1`
+
 ## Maintainer release notes
 
 The github action takes in the current tag from  [upstream](https://github.com/cryptoadvance/specter-desktop/tags)  but you will need to do a
