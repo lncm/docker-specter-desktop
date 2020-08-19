@@ -26,7 +26,7 @@ WORKDIR /specter-desktop
 
 RUN git checkout $VERSION
 RUN sed -i "s/vx.y.z-get-replaced-by-release-script/${VERSION}/g; " setup.py
-RUN python setup.py install
+RUN pip3 install .
 
 
 FROM python:3.8.5-slim-buster as final
