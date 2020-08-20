@@ -1,0 +1,27 @@
+name: Docker build on push
+env:
+        DOCKER_CLI_EXPERIMENTAL: enabled
+
+on: push
+
+jobs:
+        build:
+                runs-on: ubuntu-18.04
+                name: Build and push all the stuff defined in this repo
+                steps:
+                        - name: Set env variables
+                          run: |
+                                  echo "::set-env name=BRANCH::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')"
+                                  echo "::set-env name=SHORTSHA::$(git rev-parse --short HEAD)"
+
+                        - name: Show set env variables
+                          run: |
+                                  printf "    BRANCH: %s\n"  "$BRANCH"
+                                  printf "    BRANCH: %s\n"  "$SHORTSHA"
+                                  printf "    REPO: %s\n" "$GITHUB_REPOSITORY"
+
+                        - name: Login to Docker Hub
+                          run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+
+
