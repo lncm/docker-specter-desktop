@@ -9,6 +9,9 @@ jobs:
                 runs-on: ubuntu-18.04
                 name: Build and push all the stuff defined in this repo
                 steps:
+                        - name: Checkout repo
+                          uses: actions/checkout@v2
+
                         - name: Set env variables
                           run: |
                                   echo "::set-env name=BRANCH::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')"
@@ -17,8 +20,9 @@ jobs:
                         - name: Show set env variables
                           run: |
                                   printf "    BRANCH: %s\n"  "$BRANCH"
-                                  printf "    BRANCH: %s\n"  "$SHORTSHA"
+                                  printf "    SHORTSHA: %s\n"  "$SHORTSHA"
                                   printf "    REPO: %s\n" "$GITHUB_REPOSITORY"
+                                  printf "    COMMIT ID: %s\n" "$GITHUB_SHA"
 
                         - name: Login to Docker Hub
                           run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
