@@ -22,7 +22,7 @@ docker build -t nolim1t/specter-desktop:v0.6.1 .
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/specter-desktop/tags
 
-* `latest` `v0.6.1`
+* `latest` `v0.6.1` `v0.7.0` `v0.7.1`
 
 ## Maintainer release notes
 
