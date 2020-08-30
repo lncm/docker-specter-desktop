@@ -12,3 +12,5 @@ services:
         command: --hwibridge
         volumes:
             - "${PWD}/data:/data/.specter"
+            - "/dev:/dev"
+            - "/etc/udev:/etc/udev"
