@@ -95,4 +95,11 @@ services:
                 volumes:
                         - ${PWD}/.bitcoin:/data/.bitcoin
                         - ${PWD}/.specter:/data/.specter
+                        - /dev:/dev
+                        - /etc/udev:/etc/udev
 ```
+
+## Troubleshooting
+
+Please ensure that you have the correct [udev rules](https://github.com/lncm/docker-specter-desktop/blob/master/udevrules.md) installed
+
