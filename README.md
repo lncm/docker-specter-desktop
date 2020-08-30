@@ -15,7 +15,7 @@ So we can simplify things and make things easier also ease of running through co
 To build yourself you can run
 
 ```
-docker build -t nolim1t/specter-desktop:v0.6.1 . 
+docker build -t nolim1t/specter-desktop:v0.7.1 . 
 ```
 
 ## Tags
@@ -64,6 +64,8 @@ This is a bit complex but the idea is to make sure there is a bitcoind installat
 
 I also used host networking for ease of use, and also added ```privileged``` for  further ease of use in case your user can't access the usb socket if you would like to run as a bridge to HWI or use the ```--hwibridge``` flag
 
+Or you can use the sample docker-compose in HWIBridge mode [here](https://github.com/lncm/docker-specter-desktop/blob/master/docker-compose.yml.hwibridge)
+
 ```yaml
 version: '3.8'
 services:
@@ -84,7 +86,7 @@ services:
                 image: lncm/specter-desktop:v0.6.1
                 container_name: specter-desktop
                 privileged: true
-                command: /usr/local/bin/python3 -m cryptoadvance.specter server --host ip.addr
+                command: --host ip.addr
                 restart: on-failure
                 ports:
                     - "25441:25441"
