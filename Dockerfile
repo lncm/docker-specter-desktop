@@ -16,7 +16,7 @@ FROM python:3.8.5-slim-buster AS builder
 ARG VERSION
 ARG REPO
 
-RUN apt update && apt install -y git build-essential libusb-1.0-0-dev libudev-dev libffi-dev openssl-dev
+RUN apt update && apt install -y git build-essential libusb-1.0-0-dev libudev-dev libffi-dev libssl-dev
 
 WORKDIR /
 
