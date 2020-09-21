@@ -6,7 +6,7 @@
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-ARG VERSION=v0.7.1
+ARG VERSION=v0.8.0
 ARG REPO=https://github.com/cryptoadvance/specter-desktop
 ARG USER=specter
 ARG DIR=/data/
@@ -16,7 +16,7 @@ FROM python:3.8.5-slim-buster AS builder
 ARG VERSION
 ARG REPO
 
-RUN apt update && apt install -y git build-essential libusb-1.0-0-dev libudev-dev
+RUN apt update && apt install -y git build-essential libusb-1.0-0-dev libudev-dev libffi-dev
 
 WORKDIR /
 
