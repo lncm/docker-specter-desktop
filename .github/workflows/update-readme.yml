@@ -19,4 +19,5 @@ jobs:
         with:
           user: ${{ secrets.DOCKER_USERNAME }}
           pass: ${{ secrets.DOCKER_PASSWORD }}
+          slug: lncm/specter-desktop
           description: true
