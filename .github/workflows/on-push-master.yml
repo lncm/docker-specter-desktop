@@ -69,3 +69,26 @@ jobs:
                                   --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 \
                                   --tag ${{ secrets.DOCKER_HUB_USER }}/$DOCKER_HUB_REPO:latest \
                                   --output "type=registry" .
+                                   
+                        - name: Push to GHCR.io too (ghcr.io/lncm/docker-specter-desktop)
+                          run: |
+                                  if [[ ! -z ${{ secrets.MAINTAINER_TOKEN }} ]] && [[ ! -z ${{ secrets.MAINTAINER_USER }} ]]; then
+                                      echo "${{ secrets.MAINTAINER_TOKEN }}" | docker login https://ghcr.io -u "${{ secrets.MAINTAINER_USER }}" --password-stdin
+                                      echo "Pushing to ghcr.io/lncm/docker-specter-desktop/master-$(git rev-parse --short HEAD) ..."
+                                      docker buildx build \
+                                        --cache-from "type=local,src=/tmp/.buildx-cache" \
+                                        --cache-to "type=local,dest=/tmp/.buildx-cache" \
+                                        --platform linux/amd64,linux/arm64 \
+                                        --tag ghcr.io/lncm/docker-specter-desktop:master-$(git rev-parse --short HEAD) \
+                                        --output "type=registry" .
+                                      echo "Pushing to ghcr.io/lncm/docker-specter-desktop/latest ..."
+                                      docker buildx build \
+                                        --cache-from "type=local,src=/tmp/.buildx-cache" \
+                                        --cache-to "type=local,dest=/tmp/.buildx-cache" \
+                                        --platform linux/amd64,linux/arm64 \
+                                        --tag ghcr.io/lncm/docker-specter-desktop:latest \
+                                        --output "type=registry" .
+                                  else
+                                      echo "MAINTAINER_TOKEN and MAINTAINER_USER do no exist! Skipping!"
+                                  fi
+
