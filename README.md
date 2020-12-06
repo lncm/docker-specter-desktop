@@ -22,7 +22,7 @@ docker build -t nolim1t/specter-desktop:v0.10.1 .
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/specter-desktop/tags
 
-* `latest` `v0.10.1` `v0.10.0` 
+* `latest` `v0.10.2` `v0.10.1` `v0.10.0` 
 * `v0.9.2` `v0.9.1`
 * `v0.8.0` `v0.8.1`
 * `v0.7.1` `v0.7.2`
@@ -50,16 +50,16 @@ There are two ways you can run this
 docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.10.0 --hwibridge
 
 # Get the Help to see options
-docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.10.1 --help
+docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.10.2 --help
 
 # Run in Daemon mode
-docker run --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.10.1 --host your.ip.address --daemon
+docker run --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.10.2 --host your.ip.address --daemon
 
 # Run in docker detached mode (so we can see the logs)
-docker run -d=true --name=specter-desktop --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.10.1 --host your.ip.address
+docker run -d=true --name=specter-desktop --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.10.2 --host your.ip.address
 
 # with flask env file in root (Replace --help with other stuff
-docker run --name=specter-desktop --network=host --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin -v $HOME/.flaskenv:/.flaskenv lncm/specter-desktop:v0.10.1 --help
+docker run --name=specter-desktop --network=host --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin -v $HOME/.flaskenv:/.flaskenv lncm/specter-desktop:v0.10.2 --help
 ```
 
 ### Docker compose
@@ -87,7 +87,7 @@ services:
                 stop_grace_period: 20m30s
                 network_mode: host
         specter:
-                image: lncm/specter-desktop:v0.10.1
+                image: lncm/specter-desktop:v0.10.2
                 container_name: specter-desktop
                 privileged: true
                 command: --host ip.addr
