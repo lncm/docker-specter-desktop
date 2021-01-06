@@ -106,8 +106,11 @@ services:
 
 ## Mirrors
 
+### Gitlab
+
 To support decentralization, we also have a [gitlab](https://gitlab.com/lncm/docker/spector-desktop) repository too, with [docker images on gitlab](https://gitlab.com/lncm/docker/spector-desktop/container_registry/1510240)
 
+To use the docker image on gitlab, check out ```registry.gitlab.com/lncm/docker/spector-desktop:v0.10.0-3512dfd4```
 
 ## Troubleshooting
 
