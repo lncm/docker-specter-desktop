@@ -4,7 +4,7 @@
 ![Version](https://img.shields.io/github/v/release/lncm/docker-specter-desktop?sort=semver) 
 [![Docker Pulls Count](https://img.shields.io/docker/pulls/lncm/specter-desktop.svg?style=flat)](https://hub.docker.com/r/lncm/specter-desktop)
 
-[Specter Desktop](https://github.com/cryptoadvance/specter-desktop) by [cryptoadvance](https://cryptoadvance.io/) in a docker container.
+[Specter Desktop](https://github.com/cryptoadvance/specter-desktop) by [cryptoadvance](https://cryptoadvance.io/) in an [auditable](https://github.com/lncm/docker-specter-desktop) docker [container](https://hub.docker.com/r/lncm/specter-desktop).
 
 ## Why?
 
@@ -15,14 +15,15 @@ So we can simplify things and make things easier also ease of running through co
 To build yourself you can run
 
 ```
-docker build -t nolim1t/specter-desktop:v0.10.4 . 
+docker build -t nolim1t/specter-desktop:v1.0.0 . 
 ```
 
 ## Tags
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/specter-desktop/tags
 
-* `latest` `v0.10.4` `v0.10.2` `v0.10.1` `v0.10.0` 
+* `latest` `v1.0.0`
+* `v0.10.4` `v0.10.2` `v0.10.1` `v0.10.0` 
 * `v0.9.2` `v0.9.1`
 * `v0.8.0` `v0.8.1`
 * `v0.7.1` `v0.7.2`
@@ -50,16 +51,16 @@ There are two ways you can run this
 docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.10.4 --hwibridge
 
 # Get the Help to see options
-docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.10.4 --help
+docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v1.0.0 --help
 
 # Run in Daemon mode
-docker run --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.10.4 --host your.ip.address --daemon
+docker run --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v1.0.0 --host your.ip.address --daemon
 
 # Run in docker detached mode (so we can see the logs)
-docker run -d=true --name=specter-desktop --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.10.4 --host your.ip.address
+docker run -d=true --name=specter-desktop --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v1.0.0 --host your.ip.address
 
 # with flask env file in root (Replace --help with other stuff
-docker run --name=specter-desktop --network=host --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin -v $HOME/.flaskenv:/.flaskenv lncm/specter-desktop:v0.10.4 --help
+docker run --name=specter-desktop --network=host --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin -v $HOME/.flaskenv:/.flaskenv lncm/specter-desktop:v1.0.0 --help
 ```
 
 ### Docker compose
@@ -87,7 +88,7 @@ services:
                 stop_grace_period: 20m30s
                 network_mode: host
         specter:
-                image: lncm/specter-desktop:v0.10.4
+                image: lncm/specter-desktop:v1.0.0
                 container_name: specter-desktop
                 privileged: true
                 command: --host ip.addr
@@ -102,6 +103,14 @@ services:
                         - /dev:/dev
                         - /etc/udev:/etc/udev
 ```
+
+## Mirrors
+
+### Gitlab
+
+To support decentralization, we also have a [gitlab](https://gitlab.com/lncm/docker/spector-desktop) repository too, with [docker images on gitlab](https://gitlab.com/lncm/docker/spector-desktop/container_registry/1510240)
+
+To use the docker image on gitlab, check out ```registry.gitlab.com/lncm/docker/spector-desktop:v0.10.0-3512dfd4```
 
 ## Troubleshooting
 
