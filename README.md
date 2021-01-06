@@ -104,6 +104,11 @@ services:
                         - /etc/udev:/etc/udev
 ```
 
+## Mirrors
+
+To support decentralization, we also have a [gitlab](https://gitlab.com/lncm/docker/spector-desktop) repository too, with [docker images on gitlab](https://gitlab.com/lncm/docker/spector-desktop/container_registry/1510240)
+
+
 ## Troubleshooting
 
 Please ensure that you have the correct [udev rules](https://github.com/lncm/docker-specter-desktop/blob/master/udevrules.md) installed
