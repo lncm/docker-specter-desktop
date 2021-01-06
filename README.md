@@ -4,7 +4,7 @@
 ![Version](https://img.shields.io/github/v/release/lncm/docker-specter-desktop?sort=semver) 
 [![Docker Pulls Count](https://img.shields.io/docker/pulls/lncm/specter-desktop.svg?style=flat)](https://hub.docker.com/r/lncm/specter-desktop)
 
-[Specter Desktop](https://github.com/cryptoadvance/specter-desktop) by [cryptoadvance](https://cryptoadvance.io/) in a docker container.
+[Specter Desktop](https://github.com/cryptoadvance/specter-desktop) by [cryptoadvance](https://cryptoadvance.io/) in an [auditable](https://github.com/lncm/docker-specter-desktop) docker [container](https://hub.docker.com/r/lncm/specter-desktop).
 
 ## Why?
 
