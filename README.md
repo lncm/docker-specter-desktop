@@ -48,19 +48,39 @@ There are two ways you can run this
 ```bash
 # in HWI bridge mode (meaning you would like to run a bridge to HWI)
 # Also ensure that your username is permissioned for accessing the USB device. (group=plugdev) or use the --privileged switch
-docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.10.4 --hwibridge
+docker run --rm \
+    -v $HOME/.specter:/data/.specter \
+    lncm/specter-desktop:v1.0.0 --hwibridge
+
 
 # Get the Help to see options
-docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v1.0.0 --help
+docker run --rm \
+    -v $HOME/.specter:/data/.specter \
+    lncm/specter-desktop:v1.0.0 --help
+
+# Get help (example of using the gitlab mirror
+docker run --rm \
+    -v $HOME/.specter:/data/.specter \
+    registry.gitlab.com/lncm/docker/spector-desktop:v1.0.0-b56b17f4 --help
 
 # Run in Daemon mode
-docker run --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v1.0.0 --host your.ip.address --daemon
+docker run --rm \
+    -v $HOME/.specter:/data/.specter \
+    -v $HOME/.bitcoin:/data/.bitcoin \
+    lncm/specter-desktop:v1.0.0 --host your.ip.address --daemon
 
 # Run in docker detached mode (so we can see the logs)
-docker run -d=true --name=specter-desktop --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v1.0.0 --host your.ip.address
+docker run -d=true --name=specter-desktop --rm \
+    -v $HOME/.specter:/data/.specter \
+    -v $HOME/.bitcoin:/data/.bitcoin \
+    lncm/specter-desktop:v1.0.0 --host your.ip.address
 
 # with flask env file in root (Replace --help with other stuff
-docker run --name=specter-desktop --network=host --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin -v $HOME/.flaskenv:/.flaskenv lncm/specter-desktop:v1.0.0 --help
+docker run --name=specter-desktop --network=host --rm \
+    -v $HOME/.specter:/data/.specter \
+    -v $HOME/.bitcoin:/data/.bitcoin \
+    -v $HOME/.flaskenv:/.flaskenv \
+    lncm/specter-desktop:v1.0.0 --help
 ```
 
 ### Docker compose
@@ -70,6 +90,10 @@ This is a bit complex but the idea is to make sure there is a bitcoind installat
 I also used host networking for ease of use, and also added ```privileged``` for  further ease of use in case your user can't access the usb socket if you would like to run as a bridge to HWI or use the ```--hwibridge``` flag
 
 Or you can use the sample docker-compose in HWIBridge mode [here](https://github.com/lncm/docker-specter-desktop/blob/master/docker-compose.yml.hwibridge)
+
+We recommend using docker-compose method. In the example HWI Bridge file, I am using the gitlab container instead of the dockerhub container. 
+
+We support and build to **both** environments.
 
 ```yaml
 version: '3.8'
