@@ -49,7 +49,7 @@ There are two ways you can run this
 ```bash
 # in HWI bridge mode (meaning you would like to run a bridge to HWI)
 # Also ensure that your username is permissioned for accessing the USB device. (group=plugdev) or use the --privileged switch
-docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.10.4 --hwibridge
+docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v1.1.0 --hwibridge
 
 # Get the Help to see options
 docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v1.1.0 --help
