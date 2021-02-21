@@ -15,7 +15,7 @@ So we can simplify things and make things easier also ease of running through co
 To build yourself you can run
 
 ```
-docker build -t nolim1t/specter-desktop:v1.1.0 . 
+docker build -t nolim1t/specter-desktop:v1.2.1 . 
 ```
 
 ## Tags
@@ -23,6 +23,7 @@ docker build -t nolim1t/specter-desktop:v1.1.0 .
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/specter-desktop/tags
 
 * `latest`
+* `v1.2.0` `v1.2.1`
 * `v1.0.0` `v1.1.0`
 * `v0.10.4` `v0.10.2` `v0.10.1` `v0.10.0` 
 * `v0.9.2` `v0.9.1`
@@ -51,32 +52,32 @@ There are two ways you can run this
 # Also ensure that your username is permissioned for accessing the USB device. (group=plugdev) or use the --privileged switch
 docker run --rm \
     -v $HOME/.specter:/data/.specter \
-    lncm/specter-desktop:v1.0.0 --hwibridge
+    lncm/specter-desktop:v1.2.1 --hwibridge
 
 
 # Get the Help to see options
 docker run --rm \
     -v $HOME/.specter:/data/.specter \
-    lncm/specter-desktop:v1.2.0 --help
+    lncm/specter-desktop:v1.2.1 --help
 
 # Run in Daemon mode
 docker run --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
-    lncm/specter-desktop:v1.2.0 --host your.ip.address --daemon
+    lncm/specter-desktop:v1.2.1 --host your.ip.address --daemon
 
 # Run in docker detached mode (so we can see the logs)
 docker run -d=true --name=specter-desktop --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
-    lncm/specter-desktop:v1.2.0 --host your.ip.address
+    lncm/specter-desktop:v1.2.1 --host your.ip.address
 
 # with flask env file in root (Replace --help with other stuff
 docker run --name=specter-desktop --network=host --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
     -v $HOME/.flaskenv:/.flaskenv \
-    lncm/specter-desktop:v1.2.0 --help
+    lncm/specter-desktop:v1.2.1 --help
 ```
 
 ### Docker compose
@@ -95,7 +96,7 @@ We support and build to **both** environments.
 version: '3.8'
 services:
         bitcoin:
-                image: lncm/bitcoind:v0.20.1
+                image: lncm/bitcoind:v0.21.0
                 container_name: bitcoin
                 volumes:
                         - ${PWD}/bitcoin:/root/.bitcoin
@@ -108,7 +109,7 @@ services:
                 stop_grace_period: 20m30s
                 network_mode: host
         specter:
-                image: lncm/specter-desktop:v1.1.0
+                image: lncm/specter-desktop:v1.2.1
                 container_name: specter-desktop
                 privileged: true
                 command: --host ip.addr
