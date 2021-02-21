@@ -6,7 +6,7 @@
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-ARG VERSION=v1.0.0
+ARG VERSION=v1.1.0
 ARG REPO=https://github.com/cryptoadvance/specter-desktop
 ARG USER=specter
 ARG DIR=/data/
@@ -59,4 +59,4 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 # Expose ports
 EXPOSE 25441 25442 25443 
 
-ENTRYPOINT ["/usr/local/bin/python3", "-m", "cryptoadvance.specter", "server"]
+ENTRYPOINT ["/usr/local/bin/python3", "-m", "cryptoadvance.specter", "server", "--host", "0.0.0.0"]

@@ -15,14 +15,15 @@ So we can simplify things and make things easier also ease of running through co
 To build yourself you can run
 
 ```
-docker build -t nolim1t/specter-desktop:v1.0.0 . 
+docker build -t nolim1t/specter-desktop:v1.1.0 . 
 ```
 
 ## Tags
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/specter-desktop/tags
 
-* `latest` `v1.0.0`
+* `latest`
+* `v1.0.0` `v1.1.0`
 * `v0.10.4` `v0.10.2` `v0.10.1` `v0.10.0` 
 * `v0.9.2` `v0.9.1`
 * `v0.8.0` `v0.8.1`
@@ -56,31 +57,26 @@ docker run --rm \
 # Get the Help to see options
 docker run --rm \
     -v $HOME/.specter:/data/.specter \
-    lncm/specter-desktop:v1.0.0 --help
-
-# Get help (example of using the gitlab mirror
-docker run --rm \
-    -v $HOME/.specter:/data/.specter \
-    registry.gitlab.com/lncm/docker/spector-desktop:v1.0.0-b56b17f4 --help
+    lncm/specter-desktop:v1.2.0 --help
 
 # Run in Daemon mode
 docker run --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
-    lncm/specter-desktop:v1.0.0 --host your.ip.address --daemon
+    lncm/specter-desktop:v1.2.0 --host your.ip.address --daemon
 
 # Run in docker detached mode (so we can see the logs)
 docker run -d=true --name=specter-desktop --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
-    lncm/specter-desktop:v1.0.0 --host your.ip.address
+    lncm/specter-desktop:v1.2.0 --host your.ip.address
 
 # with flask env file in root (Replace --help with other stuff
 docker run --name=specter-desktop --network=host --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
     -v $HOME/.flaskenv:/.flaskenv \
-    lncm/specter-desktop:v1.0.0 --help
+    lncm/specter-desktop:v1.2.0 --help
 ```
 
 ### Docker compose
@@ -112,7 +108,7 @@ services:
                 stop_grace_period: 20m30s
                 network_mode: host
         specter:
-                image: lncm/specter-desktop:v1.0.0
+                image: lncm/specter-desktop:v1.1.0
                 container_name: specter-desktop
                 privileged: true
                 command: --host ip.addr
