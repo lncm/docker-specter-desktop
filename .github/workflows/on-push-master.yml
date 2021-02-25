@@ -18,9 +18,9 @@ jobs:
 
                         - name: Set env variables
                           run: |
-                                  echo "::set-env name=BRANCH::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')"
-                                  echo "::set-env name=SHORTSHA::$(git rev-parse --short HEAD)"
-                                  echo "::set-env name=DOCKER_HUB_REPO::specter-desktop"
+                                  echo "BRANCH=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')" >> $GITHUB_ENV
+                                  echo "SHORTSHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+                                  echo "DOCKER_HUB_REPO=specter-desktop" >> $GITHUB_ENV
 
                         - name: Show set env variables
                           run: |
@@ -74,13 +74,6 @@ jobs:
                           run: |
                                   if [[ ! -z ${{ secrets.MAINTAINER_TOKEN }} ]] && [[ ! -z ${{ secrets.MAINTAINER_USER }} ]]; then
                                       echo "${{ secrets.MAINTAINER_TOKEN }}" | docker login https://ghcr.io -u "${{ secrets.MAINTAINER_USER }}" --password-stdin
-                                      echo "Pushing to ghcr.io/lncm/docker-specter-desktop/master-$(git rev-parse --short HEAD) ..."
-                                      docker buildx build \
-                                        --cache-from "type=local,src=/tmp/.buildx-cache" \
-                                        --cache-to "type=local,dest=/tmp/.buildx-cache" \
-                                        --platform linux/amd64,linux/arm64 \
-                                        --tag ghcr.io/lncm/docker-specter-desktop:master-$(git rev-parse --short HEAD) \
-                                        --output "type=registry" .
                                       echo "Pushing to ghcr.io/lncm/docker-specter-desktop/latest ..."
                                       docker buildx build \
                                         --cache-from "type=local,src=/tmp/.buildx-cache" \
