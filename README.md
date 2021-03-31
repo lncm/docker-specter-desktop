@@ -15,7 +15,7 @@ So we can simplify things and make things easier also ease of running through co
 To build yourself you can run
 
 ```
-docker build -t nolim1t/specter-desktop:v1.3.0 . 
+docker build -t lncm/specter-desktop:v1.3.0 . 
 ```
 
 ## Tags
