@@ -6,6 +6,8 @@
 
 [Specter Desktop](https://github.com/cryptoadvance/specter-desktop) by [cryptoadvance](https://cryptoadvance.io/) in an [auditable](https://github.com/lncm/docker-specter-desktop) docker [container](https://hub.docker.com/r/lncm/specter-desktop).
 
+If you are a maintainer, [read this section](#maintainer-release-notes)
+
 ## Why?
 
 So we can simplify things and make things easier also ease of running through connected devices (raspberry PIs) as this runs cross platform
@@ -38,6 +40,12 @@ The github action takes in the current tag from  [upstream](https://github.com/c
 
 ```
 git tag -s vtag.version
+```
+
+For example, if a release called **0.7.0** was to be released (you would see the [upstream](https://github.com/cryptoadvance/specter-desktop/tags) for this) then you would do
+
+```
+git tag -s v0.7.0
 ```
 
 and then push the tag. Use of -s meaning the tag should be signed which is highly recommended that you do.
