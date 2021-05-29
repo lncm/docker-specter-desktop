@@ -17,7 +17,7 @@ So we can simplify things and make things easier also ease of running through co
 To build yourself you can run
 
 ```
-docker build -t lncm/specter-desktop:v1.3.1 . 
+docker build -t lncm/specter-desktop:v1.4.0 . 
 ```
 
 ## Tags
@@ -25,6 +25,7 @@ docker build -t lncm/specter-desktop:v1.3.1 .
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/specter-desktop/tags
 
 * `latest`
+* `v1.4.0`
 * `v1.3.1`
 * `v1.2.0` `v1.2.1` `v1.2.2`
 * `v1.0.0` `v1.1.0`
@@ -45,7 +46,7 @@ git tag -s vtag.version
 For example, if a release called **0.7.0** was to be released (you would see the [upstream](https://github.com/cryptoadvance/specter-desktop/tags) for this) then you would do
 
 ```
-git tag -s v0.7.0
+git tag -s v1.4.0
 ```
 
 and then push the tag. Use of -s meaning the tag should be signed which is highly recommended that you do.
@@ -61,32 +62,32 @@ There are two ways you can run this
 # Also ensure that your username is permissioned for accessing the USB device. (group=plugdev) or use the --privileged switch
 docker run --rm \
     -v $HOME/.specter:/data/.specter \
-    lncm/specter-desktop:v1.3.1 --hwibridge
+    lncm/specter-desktop:v1.4.0 --hwibridge
 
 
 # Get the Help to see options
 docker run --rm \
     -v $HOME/.specter:/data/.specter \
-    lncm/specter-desktop:v1.3.1 --help
+    lncm/specter-desktop:v1.4.0 --help
 
 # Run in Daemon mode
 docker run --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
-    lncm/specter-desktop:v1.3.1 --host your.ip.address --daemon
+    lncm/specter-desktop:v1.4.0 --host your.ip.address --daemon
 
 # Run in docker detached mode (so we can see the logs)
 docker run -d=true --name=specter-desktop --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
-    lncm/specter-desktop:v1.3.1 --host your.ip.address
+    lncm/specter-desktop:v1.4.0 --host your.ip.address
 
 # with flask env file in root (Replace --help with other stuff
 docker run --name=specter-desktop --network=host --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
     -v $HOME/.flaskenv:/.flaskenv \
-    lncm/specter-desktop:v1.3.1 --help
+    lncm/specter-desktop:v1.4.0 --help
 ```
 
 ### Docker compose
@@ -118,10 +119,10 @@ services:
                 stop_grace_period: 20m30s
                 network_mode: host
         specter:
-                image: lncm/specter-desktop:v1.3.1
+                image: lncm/specter-desktop:v1.4.0
                 container_name: specter-desktop
                 privileged: true
-                command: --host ip.addr
+                command: --host 0.0.0.0
                 restart: on-failure
                 ports:
                     - "25441:25441"
