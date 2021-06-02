@@ -17,7 +17,7 @@ So we can simplify things and make things easier also ease of running through co
 To build yourself you can run
 
 ```
-docker build -t lncm/specter-desktop:v1.4.0 . 
+docker build -t lncm/specter-desktop:v1.4.2 . 
 ```
 
 ## Tags
@@ -25,7 +25,7 @@ docker build -t lncm/specter-desktop:v1.4.0 .
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/specter-desktop/tags
 
 * `latest`
-* `v1.4.0`
+* `v1.4.0` `v1.4.1` `1.4.2`
 * `v1.3.1`
 * `v1.2.0` `v1.2.1` `v1.2.2`
 * `v1.0.0` `v1.1.0`
@@ -46,7 +46,7 @@ git tag -s vtag.version
 For example, if a release called **0.7.0** was to be released (you would see the [upstream](https://github.com/cryptoadvance/specter-desktop/tags) for this) then you would do
 
 ```
-git tag -s v1.4.0
+git tag -s v1.4.2
 ```
 
 and then push the tag. Use of -s meaning the tag should be signed which is highly recommended that you do.
@@ -68,26 +68,26 @@ docker run --rm \
 # Get the Help to see options
 docker run --rm \
     -v $HOME/.specter:/data/.specter \
-    lncm/specter-desktop:v1.4.0 --help
+    lncm/specter-desktop:v1.4.2 --help
 
 # Run in Daemon mode
 docker run --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
-    lncm/specter-desktop:v1.4.0 --host your.ip.address --daemon
+    lncm/specter-desktop:v1.4.2 --host your.ip.address --daemon
 
 # Run in docker detached mode (so we can see the logs)
 docker run -d=true --name=specter-desktop --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
-    lncm/specter-desktop:v1.4.0 --host your.ip.address
+    lncm/specter-desktop:v1.4.2 --host your.ip.address
 
 # with flask env file in root (Replace --help with other stuff
 docker run --name=specter-desktop --network=host --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
     -v $HOME/.flaskenv:/.flaskenv \
-    lncm/specter-desktop:v1.4.0 --help
+    lncm/specter-desktop:v1.4.2 --help
 ```
 
 ### Docker compose
@@ -119,7 +119,7 @@ services:
                 stop_grace_period: 20m30s
                 network_mode: host
         specter:
-                image: lncm/specter-desktop:v1.4.0
+                image: lncm/specter-desktop:v1.4.2
                 container_name: specter-desktop
                 privileged: true
                 command: --host 0.0.0.0
