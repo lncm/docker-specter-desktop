@@ -23,6 +23,7 @@ docker build -t lncm/specter-desktop:v1.5.0 .
 ## Tags
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/specter-desktop/tags
+
 > **WARNING!!** From v1.5.0 onwards, we will not be building for armv7 and armv6 architectures due to the latest versions only using libraries supporting 64-Bit architectures.
 
 * `latest`
