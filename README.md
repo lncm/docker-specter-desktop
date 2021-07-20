@@ -23,6 +23,7 @@ docker build -t lncm/specter-desktop:v1.5.0 .
 ## Tags
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/specter-desktop/tags
+> **WARNING!!** From v1.5.0 onwards, we will not be building for armv7 and armv6 architectures due to the latest versions only using libraries supporting 64-Bit architectures.
 
 * `latest`
 * [`v1.4.0`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.4.0) [`v1.4.1`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.4.1) [`v1.4.2`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.4.2) [`v1.4.5`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.4.5) [`v1.4.6`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.4.6) [`v1.5.0`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.5.0)
