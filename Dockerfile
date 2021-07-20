@@ -26,9 +26,9 @@ WORKDIR /specter-desktop
 
 RUN git checkout $VERSION
 RUN sed -i "s/vx.y.z-get-replaced-by-release-script/${VERSION}/g; " setup.py
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 RUN pip3 install --upgrade pip
 RUN pip3 install babel cryptography
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 RUN python setup.py install 
 
 #RUN pip3 install .
