@@ -16,7 +16,7 @@ FROM python:3.8.11-slim-buster AS builder
 ARG VERSION
 ARG REPO
 
-RUN apt update && apt install -y git build-essential libusb-1.0-0-dev libudev-dev libffi-dev libssl-dev rustc cargo
+RUN apt update && apt install -y git build-essential libusb-1.0-0-dev libudev-dev libffi-dev libssl-dev
 
 WORKDIR /
 
@@ -28,7 +28,10 @@ RUN git checkout $VERSION
 RUN sed -i "s/vx.y.z-get-replaced-by-release-script/${VERSION}/g; " setup.py
 RUN pip3 install --upgrade pip
 RUN pip3 install babel cryptography
-RUN pip3 install .
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+RUN python setup.py install 
+
+#RUN pip3 install .
 
 
 FROM python:3.8.11-slim-buster as final
