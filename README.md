@@ -62,7 +62,7 @@ There are two ways you can run this
 # Also ensure that your username is permissioned for accessing the USB device. (group=plugdev) or use the --privileged switch
 docker run --rm \
     -v $HOME/.specter:/data/.specter \
-    lncm/specter-desktop:v1.4.6 --hwibridge
+    lncm/specter-desktop:v1.5.0 --hwibridge
 
 
 # Get the Help to see options
@@ -119,7 +119,7 @@ services:
                 stop_grace_period: 20m30s
                 network_mode: host
         specter:
-                image: lncm/specter-desktop:v1.4.6
+                image: lncm/specter-desktop:v1.5.0
                 container_name: specter-desktop
                 privileged: true
                 command: --host 0.0.0.0
