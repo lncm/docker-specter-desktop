@@ -1,7 +1,7 @@
 version: '3.8'
 services:
     specterhwi:
-        image: lncm/specter-desktop:v1.5.0
+        image: lncm/specter-desktop:v1.5.1
         container_name: specter-desktop
         network_mode: host
         ports:
