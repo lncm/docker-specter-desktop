@@ -1,6 +1,11 @@
 name: Automated release of new Specter versions
 
-on: "repository_dispatch"
+on:
+  workflow_dispatch:
+      inputs:
+        tag:
+          description: 'The tag to build'
+          required: true
 
 jobs:
   build:
@@ -11,7 +16,7 @@ jobs:
 
       - name: Get latest tag
         run: |
-               echo "TAG=$(git -c 'versionsort.suffix=-' ls-remote --exit-code --refs --sort='version:refname' --tags https://github.com/cryptoadvance/specter-desktop '*.*.*' | tail --lines=1 | cut --delimiter='/' --fields=3)" >> $GITHUB_ENV
+               echo "TAG=${{ github.event.inputs.tag }}" >> $GITHUB_ENV
                echo "Latest specter is ${{ env.TAG }}"
 
       - uses: rickstaa/action-create-tag@v1
