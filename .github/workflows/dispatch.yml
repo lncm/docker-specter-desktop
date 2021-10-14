@@ -6,10 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      - uses: oprypin/find-latest-tag@v1
+      - uses: tdemin/find-latest-tag@v1
         with:
-          repository: cryptoadvance/specter-desktop
-          releases-only: false
+          repo: https://github.com/cryptoadvance/specter-desktop.git
         id: specter
 
       - run: echo "Latest specter is ${{ steps.specter.outputs.tag }}"
