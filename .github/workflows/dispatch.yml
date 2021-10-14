@@ -1,0 +1,19 @@
+name: Automated release of new Specter versions
+
+on: "repository_dispatch"
+
+steps:
+  - uses: oprypin/find-latest-tag@v1
+    with:
+      repository: cryptoadvance/specter-desktop
+      releases-only: false
+    id: specter
+
+  - run: echo "Latest specter is ${{ steps.specter.outputs.tag }}"
+
+  - uses: actions/checkout@v2
+  
+  - uses: rickstaa/action-create-tag@v1
+    with:
+      tag: ${{ steps.specter.outputs.tag }}
+      message: "Latest specter release (automated tag)"
