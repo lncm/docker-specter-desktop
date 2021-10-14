@@ -6,12 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      - uses: tdemin/find-latest-tag@v1
-        with:
-          repo: https://github.com/cryptoadvance/specter-desktop.git
-        id: specter
 
-      - run: echo "Latest specter is ${{ steps.specter.outputs.tag }}"
+      - name: Get latest tag
+        run: |
+               echo "TAG=$(git -c 'versionsort.suffix=-' ls-remote --exit-code --refs --sort='version:refname' --tags https://github.com/cryptoadvance/specter-desktop '*.*.*' | tail --lines=1 | cut --delimiter='/' --fields=3)" >> $GITHUB_ENV
+               echo "Latest specter is $TAG"
 
       - uses: actions/checkout@v2
 
@@ -19,3 +18,60 @@ jobs:
         with:
           tag: ${{ steps.specter.outputs.tag }}
           message: "Latest specter release (automated tag)"
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Setup Docker buildx action
+        uses: crazy-max/ghaction-docker-buildx@v1
+        id: buildx
+        with:
+              buildx-version: latest
+              qemu-version: latest
+
+      - name: Show available Docker buildx platforms
+        run: echo ${{ steps.buildx.outputs.platforms }}
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Run Docker buildx against the tag (specter-desktop)
+        run: |
+                docker buildx build \
+                --cache-from "type=local,src=/tmp/.buildx-cache" \
+                --cache-to "type=local,dest=/tmp/.buildx-cache" \
+                --build-arg VERSION=$TAG \
+                --platform linux/amd64,linux/arm64 \
+                --tag ${{ secrets.DOCKER_HUB_USER }}/specter-desktop:$TAG \
+                --output "type=registry" .
+
+      - name: Push to GHCR.io too (ghcr.io/lncm/docker-specter-desktop:TAG)
+        run: |
+                if [[ ! -z ${{ secrets.MAINTAINER_TOKEN }} ]] && [[ ! -z ${{ secrets.MAINTAINER_USER }} ]]; then
+                    echo "${{ secrets.MAINTAINER_TOKEN }}" | docker login https://ghcr.io -u "${{ secrets.MAINTAINER_USER }}" --password-stdin
+                    echo "Pushing to ghcr.io/lncm/docker-specter-desktop/$TAG ..."
+                    docker buildx build \
+                      --cache-from "type=local,src=/tmp/.buildx-cache" \
+                      --cache-to "type=local,dest=/tmp/.buildx-cache" \
+                      --platform linux/amd64,linux/arm64 \
+                      --tag ghcr.io/lncm/docker-specter-desktop:$TAG \
+                      --output "type=registry" .
+                    echo "Pushing to ghcr.io/lncm/docker-specter-desktop:latest ..."
+                    docker buildx build \
+                      --cache-from "type=local,src=/tmp/.buildx-cache" \
+                      --cache-to "type=local,dest=/tmp/.buildx-cache" \
+                      --platform linux/amd64,linux/arm64 \
+                      --tag ghcr.io/lncm/docker-specter-desktop:latest \
+                      --output "type=registry" .
+                else
+                    echo "MAINTAINER_TOKEN and MAINTAINER_USER do no exist! Skipping!"
+                fi
