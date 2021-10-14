@@ -16,7 +16,7 @@ jobs:
 
       - uses: rickstaa/action-create-tag@v1
         with:
-          tag: ${{ steps.specter.outputs.tag }}
+          tag: $TAG
           message: "Latest specter release (automated tag)"
 
       - name: Login to Docker Hub
