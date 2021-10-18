@@ -11,7 +11,7 @@ ARG REPO=https://github.com/cryptoadvance/specter-desktop
 ARG USER=specter
 ARG DIR=/data/
 
-FROM python:3.8.11-slim-buster AS builder
+FROM python:3.9-slim-bullseye AS builder
 
 ARG VERSION
 ARG REPO
@@ -31,7 +31,7 @@ RUN pip3 install babel cryptography
 RUN pip3 install .
 
 
-FROM python:3.8.11-slim-buster as final
+FROM python:3.9-slim-bullseye as final
 
 ARG USER
 ARG DIR
@@ -54,7 +54,7 @@ RUN mkdir -p "$DIR/.specter/"
 
 
 # Copy over python stuff
-COPY --from=builder /usr/local/lib/python3.8 /usr/local/lib/python3.8
+COPY --from=builder /usr/local/lib/python3.9 /usr/local/lib/python3.9
 COPY --from=builder /usr/local/bin /usr/local/bin
 
 
