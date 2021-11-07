@@ -27,7 +27,7 @@ docker build -t lncm/specter-desktop:v1.7.0 .
 > **WARNING!!** From v1.5.0 onwards, we will not be building for armv7 and armv6 architectures due to the latest versions only using libraries supporting 64-Bit architectures.
 
 * `latest`
-* `v1.7.0`
+* `v1.7.1` `v1.7.0`
 * [`v1.6.0`](https://hub.docker.com/layers/lncm/specter-desktop/v1.6.0/images/sha256-efffba57f1993c33b14bb2cb9967483ee4377a33a8b17254951417126ec1e829)
 * `v1.5.1`
 * [`v1.4.0`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.4.0) [`v1.4.1`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.4.1) [`v1.4.2`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.4.2) [`v1.4.5`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.4.5) [`v1.4.6`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.4.6) [`v1.5.0`](https://github.com/cryptoadvance/specter-desktop/releases/tag/v1.5.0)
@@ -51,7 +51,7 @@ git tag -s vtag.version
 For example, if a release called **1.5.1** was to be released (you would see the [upstream](https://github.com/cryptoadvance/specter-desktop/tags) for this) then you would do
 
 ```
-git tag -s v1.7.0
+git tag -s v1.7.1
 ```
 
 and then push the tag. Use of -s meaning the tag should be signed which is highly recommended that you do.
@@ -85,14 +85,14 @@ docker run --rm \
 docker run -d=true --name=specter-desktop --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
-    lncm/specter-desktop:v1.7.0 --host your.ip.address
+    lncm/specter-desktop:v1.7.1 --host your.ip.address
 
 # with flask env file in root (Replace --help with other stuff
 docker run --name=specter-desktop --network=host --rm \
     -v $HOME/.specter:/data/.specter \
     -v $HOME/.bitcoin:/data/.bitcoin \
     -v $HOME/.flaskenv:/.flaskenv \
-    lncm/specter-desktop:v1.7.0 --help
+    lncm/specter-desktop:v1.7.1 --help
 ```
 
 ### Docker compose
@@ -124,7 +124,7 @@ services:
                 stop_grace_period: 20m30s
                 network_mode: host
         specter:
-                image: lncm/specter-desktop:v1.7.0
+                image: lncm/specter-desktop:v1.7.1
                 container_name: specter-desktop
                 privileged: true
                 command: --host 0.0.0.0
