@@ -58,7 +58,7 @@ jobs:
                                   --cache-from "type=local,src=/tmp/.buildx-cache" \
                                   --cache-to "type=local,dest=/tmp/.buildx-cache" \
                                   --platform linux/amd64,linux/arm64 \
-                                  --tag nolim1t/$DOCKER_HUB_REPO:master-$SHORTSHA \
+                                  --tag ${{ secrets.DOCKER_HUB_USER }}/$DOCKER_HUB_REPO:master-$SHORTSHA \
                                   --output "type=registry" .
 
                         - name: Build against latest tag
